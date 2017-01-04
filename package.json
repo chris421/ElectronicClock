@@ -1,0 +1,33 @@
+{
+  "name": "electronic_clock",
+  "version": "1.0.0",
+  "description": "An electronic clock.",
+  "main": "main.js",
+  "scripts": {
+    "less:debug"  : "lessc src/less/main.less build/css/bundle.min.css",
+    "less:release": "lessc src/less/main.less --clean-css build/css/bundle.min.css",
+    "watch:less": "onchange \"src/less/**/*.less\" -- npm run less:debug",
+    "sync": "browser-sync start --server --browser \"firefox\" --files \"*.html, build/css/*.css, build/js/*.js\" ",
+    "start": "run-p sync watch:less"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chris421/ElectronicClock.git"
+  },
+  "keywords": [
+    "clock"
+  ],
+  "author": "chris421",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chris421/ElectronicClock/issues"
+  },
+  "homepage": "https://github.com/chris421/ElectronicClock#readme",
+  "devDependencies": {
+    "browser-sync": "^2.18.5",
+    "less": "^2.7.1",
+    "less-plugin-clean-css": "^1.5.1",
+    "npm-run-all": "^4.0.0",
+    "onchange": "^3.2.1"
+  }
+}
