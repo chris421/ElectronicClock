@@ -3,12 +3,13 @@
 @panelHeight: 300px;
 @digitColor : rgb(158, 210, 234);
 @digitSize  : 15px;
+@digitWidth : 78px;
 
 html, body {
   margin    : 0;
   padding   : 0;
   height    : 100%; 		  		  
-  background: white;
+  background: #f1f1f1;
 }		
 .ec_panel {	
 	position     : absolute; 
@@ -32,7 +33,7 @@ html, body {
 		display: inline-block;
 		vertical-align: middle;
 		position  : relative;
-		margin    : 6px;	
+		margin    : 3px;	
 		//background: rgba(0, 255, 255, 0.2);	
 	}
 	&:after {
@@ -42,9 +43,9 @@ html, body {
 		vertical-align: middle; 
 	}
 }
-.ec_digtis {
-  width     : 90px;
-  height    : calc(100% ~"-" 40px);      
+.ec_digtis_propto ( @digitSize, @digitWidth, @digitHeight) {  
+  width     : @digitWidth;
+  height    : @digitHeight;      
   &>div {
 	  position  : absolute;  
 	  opacity   : 0.1;
@@ -54,10 +55,14 @@ html, body {
 		  height    : @digitSize;      
 		  left      : 2px;
 		  top       : 0;		  
-		  
+		  /*
 		  border-top  : solid @digitSize @digitColor;
 		  border-left : solid @digitSize transparent;
-		  border-right: solid @digitSize transparent;  	  	
+		  border-right: solid @digitSize transparent; 
+		  */
+		  border-style: solid;
+		  border-width: @digitSize @digitSize 0 @digitSize;
+		  border-color: @digitColor transparent transparent transparent;
 	  }
 	  &:nth-of-type(2) {
 		  width     : @digitSize;
@@ -80,25 +85,27 @@ html, body {
 		  border-bottom : solid calc(@digitSize ~"/" 2) transparent;      
 	  }
 	  &:nth-of-type(4) {
+		  margin-top: calc(@digitSize ~"/" 2 ~"*" -1);
+
 		  width     : calc( 100% ~"-" 4px);      
 		  height    : calc(@digitSize ~"/" 2);      
 		  left      : 2px;
-		  top       : 50%;
-		  margin-top: calc(@digitSize ~"/" 2 ~"*" -1);		  
+		  top       : 50%;		  		  
 		  
 		  border-bottom : solid calc(@digitSize ~"/" 2) @digitColor;
 		  border-left   : solid @digitSize transparent;
 		  border-right  : solid @digitSize transparent;      
 	  }
-		&:nth-of-type(4):after {
+	  &:nth-of-type(4):after {
 			content: '';
 			position  : absolute;  
+			box-sizing: border-box;
+
 			width     : calc( 100% ~"+" @digitSize ~"+" @digitSize);
 			height    : calc(@digitSize ~"/" 2);  
 			left      : calc(@digitSize ~"*" -1);
 			top       : calc(@digitSize ~"/" 2);
-			box-sizing: border-box;
-
+	
 			border-top    : solid calc(@digitSize ~"/" 2) @digitColor;
 			border-left   : solid @digitSize transparent;
 			border-right  : solid @digitSize transparent;        
@@ -215,6 +222,25 @@ html, body {
   	}  	
   }            
 }
+.ec_digtis {
+	.ec_digtis_propto ( @digitSize, @digitWidth, calc(100% ~"-" 40px) );
+}
+.ec_secs {
+	@secWidth : @digitWidth/2;
+	@secHeight: calc(50% ~"-" 20px);
+	width : @secWidth;
+	height: @secHeight;
+	vertical-align: bottom !important;
+	margin-bottom : 20px !important;
+	margin-right  : 1px !important; 	
+	.ec_digtis_propto ( 8px, @secWidth, @secHeight );
+	&:nth-last-of-type(2) {
+		margin-left   : 1px !important; 
+	}
+	&:nth-last-of-type(3) {
+		margin-left   : 20px !important; 
+	}	
+}
 .ec_common {
 	width: @digitSize;
 	height    : calc(100% ~"-" 40px);		
@@ -240,4 +266,14 @@ html, body {
 		margin-bottom: -30px;
 		border-radius: 100%;
 	}	
+}
+.ec_display .ec_apm {
+	position   : absolute;	
+	color      : @digitColor;	
+	top        : 20px;
+	right      : 16px;
+	font-size  : 40px;
+	line-height: 40px;
+	font-weight: bold;
+	vertical-align: top;
 }
