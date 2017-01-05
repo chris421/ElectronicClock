@@ -11,7 +11,7 @@ body {
   width: 600px;
   height: 300px;
   left: calc(50% - 300px);
-  top: calc(50% - 150px);
+  top: calc(40% - 150px);
   background: black;
   border-radius: 6px;
   padding: 40px;
