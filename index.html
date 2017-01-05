@@ -84,18 +84,21 @@
 				if (h > 12) {
 					h -= 12; 
 				}				
-				apm.textContent = "PM";
+				apm.textContent = "PM";				
 			}		
 			else {
 				apm.textContent = "AM";
 			}	
-			h_0 = Math.floor(h/10);
-			hours[0].dataset.value = (h_0) ? h_0 : '';
-			hours[1].dataset.value = h%10;
-			minutes[0].dataset.value = Math.floor(m/10);
-			minutes[1].dataset.value = m%10;
-			secs[0].dataset.value = Math.floor( s/10 );
-			secs[1].dataset.value = s % 10;
+			h_0 = Math.floor(h/10);			
+
+			hours[0].setAttribute("data-value", (h_0) ? h_0 : '' );
+			hours[1].setAttribute("data-value", h % 10 );
+
+			minutes[0].setAttribute("data-value", Math.floor( m/10 ) );
+			minutes[1].setAttribute("data-value", m % 10);
+
+			secs[0].setAttribute("data-value", Math.floor( s/10 ) );
+			secs[1].setAttribute("data-value", s % 10);			
 		}
 		updateTime();
 		setInterval( updateTime, 500 );
